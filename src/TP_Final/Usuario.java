@@ -1,6 +1,10 @@
 package TP_Final;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
+
 
     private static int id=0;
 
@@ -8,28 +12,32 @@ public class Usuario {
     public String nombre;
     public String apellido;
     public String dni;
-    public StringBuilder password;
+    public String password;
     public int edad;
+    public boolean logueado=false;
+    public List<Reservas> listaDeViajes;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String dni, int edad) { //crea pass autoatico
+    public Usuario(String nombre, String apellido, String dni, int edad, String Password) { //crea pass automatico
         this.idUsuario = generarNuevoId();
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.password = generar_password();
+        this.password = Password;
         this.edad = edad;
+        this.logueado=false;
     }
 
-    public Usuario(String nombre, String apellido, String dni, StringBuilder password, int edad) {
+    public Usuario(String nombre, String apellido, String dni, String password, int edad) {
         this.idUsuario = generarNuevoId();
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.password = password;
         this.edad = edad;
+        this.logueado=false;
     }
 
     public String getNombre() {
@@ -56,11 +64,11 @@ public class Usuario {
         this.dni = dni;
     }
 
-    public StringBuilder getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(StringBuilder password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -72,11 +80,19 @@ public class Usuario {
         this.edad = edad;
     }
 
+    public boolean isLogueado() {
+        return logueado;
+    }
+
+    public void setLogueado(boolean logueado) {
+        this.logueado = logueado;
+    }
+
     private int generarNuevoId(){
         return ++id;
     }
 
-    private StringBuilder generar_password(){
+   /* private StringBuilder generar_password(){
 
         int longitud = 8;  //crea un password de tamaño 8 caracteres
         String AlphaNumerico = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
@@ -87,7 +103,7 @@ public class Usuario {
             new_pass.append(AlphaNumerico.charAt(index));
         }
         return new_pass;
-    }
+    }*/
 
     @Override
     public String toString() {
